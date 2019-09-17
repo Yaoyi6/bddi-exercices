@@ -14,15 +14,15 @@ const WORD_LIST = ['chevre', 'vache']
 class Game {
   constructor() {
     let letters = [], // letters entered by user
-      lives = 5, // lives left
-      word, // the current word
-      missing // number of letters missing
+        lives = 5, // lives left
+        word, // the current word
+        missing // number of letters missing
 
     function init() {
       lives = 5
 
-      word = // TODO: récupérer un mot random depuis WORD_LIST (1 ligne)
-        letters = []
+      word = WORD_LIST[Math.floor(Math.random()*WORD_LIST.length)];
+      letters = []
       // Count without duplicated
       missing = Array.prototype.filter.call(word, (letter, i) => {
         return word.indexOf(letter) == i
@@ -30,6 +30,13 @@ class Game {
     }
 
     function addLetter(letter) {
+      if(letters.includes(letter) === true || word.includes(letter) === false){
+        lives--
+      }else{
+        missing--
+        letters.push(letter)
+      }
+
       // TODO: cette fonction doit :
       // - vérifier que la lettre n'a pas déjà été tentée auparavent
       // - si ce n'est pas le cas, l'ajouter dans le tableau `letters`
@@ -45,6 +52,16 @@ class Game {
       // - exemple : v_ch_e
       // - Utiliser une boucle for et la concaténation
       // - (9 lignes)
+      let display = ''
+      for (let i = 0; i < word.length; i++) {
+        if(letters.includes(word.charAt(i))){
+
+          display = display+word.charAt(i)
+        }else{
+          display = `${display} _`
+        }
+      }
+      return display
     }
 
     function prompt(cb) {
@@ -53,7 +70,7 @@ class Game {
     }
 
     function onAnswer(answer) {
-      addLetter(/* TODO: appeler la fonction addLetter en envoyant la première lettre de `answer` (1 ligne) */)
+      addLetter(answer.charAt(0))
 
       if (missing > 0 && lives > 0) {
         prompt(onAnswer)

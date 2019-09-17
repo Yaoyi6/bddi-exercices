@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul id="list-ul">
+    <li><input type="text" name="" id=""></li>
+</ul>
+<button id="btn-add-end">
+    Add at the end
+</button >
+
+<button id="btn-add-begin">
+    Add at the beginning
+</button>
+<button id="btn-delete-begin">
+    Delete the first li
+</button>
+<button id="btn-delete-end">
+    Delete the last li
+</button>
+</body>
+<script>
+    con
+
+    let btn_add_end = document.getElementById('btn-add-end')
+    let btn_add_begin = document.getElementById('btn-add-begin')
+    let btn_delete_end = document.getElementById('btn-delete-end')
+    let btn_delete_begin = document.getElementById('btn-delete-begin')
+    let list_ul = document.getElementById('list-ul')
+    let node_li = document.createElement('li')
+    node_li.appendChild(document.createElement('input'))
+
+    btn_add_begin.addEventListener('click',()=>{
+        list_ul.append(node_li)
+    })
+    btn_add_end.addEventListener('click',()=>{
+        list_ul.prepend(node_li)
+    })
+    btn_delete_begin.addEventListener('click',()=>{
+        list_ul.firstChild.remove()
+    })
+    btn_delete_end.addEventListener('click', ()=>{
+        list_ul.lastChild.remove()
+    })
+</script>
+</html>
